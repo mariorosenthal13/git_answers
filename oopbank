@@ -1,0 +1,41 @@
+class BankAccount
+
+  attr_accessor :balance, :minimum_balance
+  attr_reader :name
+
+
+  def initialize (balance, name)
+    @minimum_balance = 300
+    if balance <= @minimum_balance
+      raise ArgumentError.new('This is an arguement error.')
+    else
+      @balance = balance
+      @name = name
+    end
+  end
+
+  def balance
+    p @balance
+  end
+
+  def deposit(deposit_amount)
+    @deposit_amount = deposit_amount
+    @balance = (@balance + deposit_amount)
+
+  end
+
+  def withdraw(withdraw_amount)
+    @withdraw_amount = withdraw_amount
+    @balance = (@balance - withdraw_amount)
+  end
+
+  def transfer(transfer_amount, account)
+    self.withdraw(transfer_amount)
+    account.deposit(transfer_amount)
+  end
+
+  def self.minimum_balance=(new_minimum)
+    @minimum_balance = new_minimum
+  end
+
+end
